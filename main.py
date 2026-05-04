@@ -7,6 +7,9 @@ def main():
         if file == ".keep":
             continue
 
+        if "cleaned" in file:
+            continue
+
         with open(os.path.join("data", file)) as srt_file:
             subtitle_data = srt_file.read()
 
@@ -28,7 +31,7 @@ def main():
 
         cleaned_subtitles_string = "\n".join(cleaned_subtitles)
 
-        with open(os.path.join("data", f"{file}-cleaned.srt"), "w") as cleaned_file:
+        with open(os.path.join("data", f"{file.removesuffix(".srt")}-cleaned.srt"), "w") as cleaned_file:
             cleaned_file.write(cleaned_subtitles_string)
 
 
